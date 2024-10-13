@@ -69,9 +69,7 @@ class Day02 : Day {
     }
 
     override fun part2(): Int {
-        return input
-            .map(Game::power)
-            .sum()
+        return input.sumOf { it.power() }
     }
 
 }
