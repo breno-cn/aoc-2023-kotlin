@@ -20,7 +20,7 @@ data class Engine(val content: List<String>, val width: Int, val height: Int) {
                 if (!char.isDigit())
                     continue
 
-                // it is a valid position, and there is a number here
+                // It's a valid position, and there is a number here
                 // find the beginning and the end of the number
                 val line = this.content[y]
                 val begin = numberBeginningPosition(line, x)
@@ -55,7 +55,7 @@ class Day03 : Day {
                 if (!isSymbol(char))
                     continue
 
-                total += this.input
+                total += input
                     .findAdjacentNumbers(i, j)
                     .sum()
             }
@@ -65,6 +65,22 @@ class Day03 : Day {
     }
 
     override fun part2(): Int {
-        return 0
+        var totalGearRatio = 0
+
+        for (i in 0..<input.height) {
+            for (j in 0..<input.width) {
+                val char = input.content[i][j]
+                if (char != '*')
+                    continue
+
+                val adjacentNumbers = input.findAdjacentNumbers(i, j)
+                if (adjacentNumbers.size != 2)
+                    continue
+
+                totalGearRatio += adjacentNumbers.reduce(Int::times)
+            }
+        }
+
+        return totalGearRatio
     }
 }
