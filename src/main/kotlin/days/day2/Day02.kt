@@ -5,7 +5,11 @@ import com.nirra.aoc.days.Day
 data class Game(val red: List<Int>, val green: List<Int>, val blue: List<Int>, val id: Int) {
     companion object {
         fun fromString(line: String): Game {
-            val id = line.substringAfter("Game ").substringBefore(": ").toInt()
+            val id = line
+                .substringAfter("Game ")
+                .substringBefore(": ")
+                .toInt()
+
             val line = line.substringAfter(": ")
             val turns = line.split("; ")
 
@@ -14,18 +18,18 @@ data class Game(val red: List<Int>, val green: List<Int>, val blue: List<Int>, v
             val blue: MutableList<Int> = mutableListOf()
 
             for (turn in turns) {
-                val split = turn.split(", ")
-                for (hand in split) {
-                    val hand = hand.split(" ")
-                    val ammount = hand[0].toInt()
-                    val collor = hand[1]
+                turn.split(", ")
+                    .forEach {
+                        val hand = it.split(" ")
+                        val amount = hand[0].toInt()
+                        val color = hand[1]
 
-                    when (collor) {
-                        "red" -> red.add(ammount)
-                        "green" -> green.add(ammount)
-                        "blue" -> blue.add(ammount)
+                        when (color) {
+                            "red" -> red.add(amount)
+                            "green" -> green.add(amount)
+                            "blue" -> blue.add(amount)
+                        }
                     }
-                }
             }
 
             return Game(red, green, blue, id)
