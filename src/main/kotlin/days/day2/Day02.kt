@@ -41,6 +41,14 @@ data class Game(val red: List<Int>, val green: List<Int>, val blue: List<Int>, v
                 this.green.all { it <= green } &&
                 this.blue.all { it <= blue }
     }
+
+    fun power(): Int {
+        val red = this.red.max()
+        val green = this.green.max()
+        val blue = this.blue.max()
+
+        return red * green * blue
+    }
 }
 
 class Day02 : Day {
@@ -61,7 +69,9 @@ class Day02 : Day {
     }
 
     override fun part2(): Int {
-        return 0
+        return input
+            .map(Game::power)
+            .sum()
     }
 
 }
