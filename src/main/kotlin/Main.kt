@@ -1,11 +1,9 @@
 package com.nirra.aoc
 
-import com.nirra.aoc.days.day03.Day03
-import com.nirra.aoc.days.day1.Day01
-import com.nirra.aoc.days.day2.Day02
+import com.nirra.aoc.days.day04.Day04
 
 fun main() {
-    val days = listOf(Day03())
+    val days = listOf(Day04())
 
     for (day in days) {
         day.run()
